@@ -33,13 +33,20 @@ document.getElementById('askBtn').onclick = async () => {
   const time = document.getElementById('time').value || '00:00';
   const question = document.getElementById('userQuestion').value;
 
-  output.textContent = 'Thinking…';
+  output.textContent = 'Meddling with space magma..';
 
   const res = await fetch(`/api/${mode}`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ dob, city, country, time, question })
-  });
-  const data = await res.json();
-  output.textContent = data.result;
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ dob, city, country, time, question })
+});
+if (!res.ok) {
+  // if server returns 500 or anything non-200, grab the raw text
+  const text = await res.text();
+  output.textContent = `Error from server:\n${text}`;
+  return;
+}
+const data = await res.json();
+output.textContent = data.result;
+
 };
