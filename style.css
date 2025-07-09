@@ -1,0 +1,12 @@
+body, html {
+  margin: 0; padding: 0;
+  height: 100%; font-family: sans-serif;
+  background: url('background.jpg') center/cover no-repeat;
+}
+#app {
+  background: rgba(255,255,255,0.8);
+  max-width: 500px; margin: 50px auto; padding: 20px;
+  border-radius: 10px; text-align: center;
+}
+.hidden { display: none; }
+button { margin: 5px; padding: 10px; }
