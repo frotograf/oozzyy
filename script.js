@@ -1,6 +1,5 @@
 // Play sound on load
 const audio = new Audio('start.mp3');
-window.onload = () => audio.play();
 
 // Step management
 const form = document.getElementById('birthForm');
@@ -27,6 +26,11 @@ document.getElementById('tarotBtn').onclick = () => {
 };
 
 document.getElementById('askBtn').onclick = async () => {
+  // Play sound once when user starts the query
+if (!audio.playedOnce) {
+  audio.play().catch(()=>{}); 
+  audio.playedOnce = true;
+}
   const dob = document.getElementById('dob').value;
   const city = document.getElementById('city').value;
   const country = document.getElementById('country').value;
